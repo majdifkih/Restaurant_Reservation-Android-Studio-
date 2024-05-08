@@ -41,6 +41,9 @@ android {
 
 
 dependencies {
+    implementation ("com.cepheuen.elegant-number-button:lib:1.0.3")
+    implementation("com.amulyakhare:com.amulyakhare.textdrawable:1.0.1")
+    implementation("com.readystatesoftware.sqliteasset:sqliteassethelper:+")
     implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("androidx.appcompat:appcompat:1.6.1")
