@@ -27,7 +27,7 @@ public class User {
     }
 
     public void setRole(String role) {
-        Role = "Client";
+        Role = role;
     }
 
     public String getName() {
