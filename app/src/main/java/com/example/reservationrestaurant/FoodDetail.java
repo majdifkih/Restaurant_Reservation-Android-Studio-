@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.example.reservationrestaurant.Database.Database;
 import com.example.reservationrestaurant.Model.Food;
 import com.example.reservationrestaurant.Model.Order;
@@ -29,11 +30,9 @@ public class FoodDetail extends AppCompatActivity {
     ImageView food_image;
     CollapsingToolbarLayout collapsingToolbarLayout;
     FloatingActionButton btnCart;
-    Button btn_plus;
-    Button btn_minus;
-    private int count = 0;
-    TextView text_number;
-    String foodId;
+    ElegantNumberButton number_btn;
+
+    String foodId="";
     FirebaseDatabase database;
     DatabaseReference foods;
     Food currentFood;
@@ -44,9 +43,7 @@ public class FoodDetail extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance("https://reservation-restaurant-24668-default-rtdb.europe-west1.firebasedatabase.app");
         foods =database.getReference("Food");
-        text_number = (TextView) findViewById(R.id.text_number);
-        btn_plus = (Button) findViewById(R.id.btn_plus);
-        btn_minus = (Button) findViewById(R.id.btn_minus);
+        number_btn = (ElegantNumberButton) findViewById(R.id.number_btn);
         btnCart = (FloatingActionButton) findViewById(R.id.btnCart);
         btnCart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +51,7 @@ public class FoodDetail extends AppCompatActivity {
                 new Database(getBaseContext()).addToCart(new Order(
                         foodId,
                         currentFood.getName(),
-                        text_number.getText().toString(),
+                        number_btn.getNumber(),
                         currentFood.getPrice(),
                         currentFood.getDiscount()
                 ));
@@ -97,27 +94,6 @@ public class FoodDetail extends AppCompatActivity {
 
             }
         });
-        // Gérer les clics sur les boutons
-        btn_plus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Augmenter le compteur
-                count++;
-                // Mettre à jour le TextView
-                text_number.setText(String.valueOf(count));
-            }
-        });
 
-        btn_minus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (count > 0) {
-                    // Diminuer le compteur si supérieur à zéro
-                    count--;
-                    // Mettre à jour le TextView
-                    text_number.setText(String.valueOf(count));
-                }
-            }
-        });
     }
 }

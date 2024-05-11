@@ -107,36 +107,15 @@
                 android:padding="@dimen/default_padding">
 
                 <!-- Plus Button -->
-                <Button
-                    android:id="@+id/btn_plus"
-                    style="@style/Widget.AppCompat.Button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="+"
+                <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                    android:id="@+id/number_btn"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
                     android:textColor="@android:color/white"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:elevation="@dimen/button_elevation" />
-
-                <!-- Number Text -->
-                <TextView
-                    android:id="@+id/text_number"
-                    style="@style/TextAppearance.AppCompat.Large"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textColor="@android:color/black"
-                    android:padding="@dimen/default_padding" />
-
-                <!-- Minus Button -->
-                <Button
-                    android:id="@+id/btn_minus"
-                    style="@style/Widget.AppCompat.Button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="-"
-                    android:textColor="@android:color/white"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:elevation="@dimen/button_elevation" />
+                    app:textSize="8sp"
+                    app:backgroundColor="@color/colorPrimary"
+                    app:initialNumber="1"
+                    app:finalNumber="20"/>
 
             </LinearLayout>
 
