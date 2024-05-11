@@ -4,11 +4,14 @@ public class User {
     private String Name;
     private String Password;
     private String Phone;
+
+    private String Role;
     public User() {}
 
     public User(String name, String password) {
         Name = name;
         Password = password;
+        Role = "Client";
     }
 
     public String getPhone() {
@@ -17,6 +20,14 @@ public class User {
 
     public void setPhone(String phone) {
         Phone = phone;
+    }
+
+    public String getRole() {
+        return Role;
+    }
+
+    public void setRole(String role) {
+        Role = "Client";
     }
 
     public String getName() {
