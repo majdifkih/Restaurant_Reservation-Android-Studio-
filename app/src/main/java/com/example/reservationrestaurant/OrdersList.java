@@ -38,11 +38,11 @@ public class OrdersList extends AppCompatActivity {
         setContentView(R.layout.activity_orders_list);
         db = FirebaseDatabase.getInstance("https://reservation-restaurant-24668-default-rtdb.europe-west1.firebasedatabase.app");
         reqRef = db.getReference("Requests");
-        name = findViewById(R.id.textView3);
-        adresse = findViewById(R.id.textView4);
-        phone = findViewById(R.id.textView6);
-        totalPrice = findViewById(R.id.textView7);
-        FoodList = findViewById(R.id.textView8);
+        name=(TextView) findViewById(R.id.textView);
+        adresse=(TextView) findViewById(R.id.textView2);
+        phone=(TextView) findViewById(R.id.textView3);
+        FoodList =(TextView) findViewById(R.id.textView5);
+        totalPrice =(TextView) findViewById(R.id.textView4);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -72,7 +72,7 @@ public class OrdersList extends AppCompatActivity {
                         totalPrice.setText("Total Price :"+OrdertotalPrice);
 
                         for( Order order:Foods){
-                            foodStringBuild.append(order.getProductName()).append("-").append(order.getQuantity()).append("\n");
+                            foodStringBuild.append(order.getProductName()).append("X").append(order.getQuantity()).append("\n");
                         }
                         FoodList.setText(foodStringBuild.toString());
                     }
