@@ -26,6 +26,8 @@ public class OrdersList extends AppCompatActivity {
     private TextView adresse;
     private TextView phone;
     private TextView totalPrice;
+
+    private TextView FoodList;
     FirebaseDatabase db;
     DatabaseReference reqRef;
 
@@ -40,6 +42,7 @@ public class OrdersList extends AppCompatActivity {
         adresse = findViewById(R.id.textView4);
         phone = findViewById(R.id.textView6);
         totalPrice = findViewById(R.id.textView7);
+        FoodList = findViewById(R.id.textView8);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -58,12 +61,20 @@ public class OrdersList extends AppCompatActivity {
                         String orderAddress = request.getAddress();
                         String orderPhone = request.getPhone();
                         String OrdertotalPrice = request.getTotal();
+                        List<Order> Foods = request.getFoods();
+                        StringBuilder foodStringBuild = new StringBuilder();
 
-                        name.setText(orderName);
-                        adresse.setText(orderAddress);
-                        phone.setText(orderPhone);
-                        totalPrice.setText(OrdertotalPrice);
 
+
+                        name.setText("Name :" +orderName);
+                        adresse.setText("Adresse :"+orderAddress);
+                        phone.setText("Phone :"+orderPhone);
+                        totalPrice.setText("Total Price :"+OrdertotalPrice);
+
+                        for( Order order:Foods){
+                            foodStringBuild.append(order.getProductName()).append("-").append(order.getQuantity()).append("\n");
+                        }
+                        FoodList.setText(foodStringBuild.toString());
                     }
                 }
             }

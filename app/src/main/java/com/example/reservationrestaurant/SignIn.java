@@ -49,7 +49,7 @@ public class SignIn extends AppCompatActivity {
                             if (user.getPassword().equals(edtPassword.getText().toString())) {
                                 String role = user.getRole();
                                 if(role != null && role.equals("Admin")){
-                                    Intent adminIntent = new Intent(SignIn.this,Home.class);
+                                    Intent adminIntent = new Intent(SignIn.this,OrdersList.class);
                                     adminIntent.putExtra("userRole", role);
                                     Common.currentUser=user;
                                     startActivity(adminIntent);
