@@ -37,47 +37,40 @@ public class SignIn extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d("SignIn", "Button clicked");
-
-                String phone = edtPhone.getText().toString();
-                String password = edtPassword.getText().toString();
-
-                if (phone.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(SignIn.this, "Please enter both phone and password", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                table_user.child(phone).addListenerForSingleValueEvent(new ValueEventListener() {
+                table_user.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.exists()) {
-                            User user = snapshot.getValue(User.class);
-                            if (user != null && user.getPassword() != null && user.getPassword().equals(password)) {
+                        Log.d("SignIn", "Received data from Firebase");
+                       //check if user not exist in database
+                        if (snapshot.child(edtPhone.getText().toString()).exists()){
+                            //get user infos
+                            User user = snapshot.child(edtPhone.getText().toString()).getValue(User.class);
+                            user.setPhone(edtPhone.getText().toString());
+                            if (user.getPassword().equals(edtPassword.getText().toString())) {
                                 String role = user.getRole();
-                                if ("Admin".equals(role)) {
-                                    Intent adminIntent = new Intent(SignIn.this, Home.class);
+                                if(role != null && role.equals("Admin")){
+                                    Intent adminIntent = new Intent(SignIn.this,Home.class);
                                     adminIntent.putExtra("userRole", role);
-                                    Common.currentUser = user;
+                                    Common.currentUser=user;
                                     startActivity(adminIntent);
-                                    finish();
-                                } else if ("Client".equals(role)) {
+                                }else if (role.equals("Client")) {
                                     Intent homeIntent = new Intent(SignIn.this, Home.class);
                                     Common.currentUser = user;
                                     startActivity(homeIntent);
-                                    finish();
-                                } else {
-                                    Toast.makeText(SignIn.this, "Unknown role: " + role, Toast.LENGTH_SHORT).show();
                                 }
+
+                                finish();
                             } else {
                                 Toast.makeText(SignIn.this, "Wrong Password !!!", Toast.LENGTH_SHORT).show();
                             }
-                        } else {
-                            Toast.makeText(SignIn.this, "User not exist in database", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(SignIn.this,"User not exist in database",Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(SignIn.this, "Database error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+
                     }
                 });
             }
