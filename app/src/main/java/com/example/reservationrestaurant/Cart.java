@@ -108,7 +108,6 @@ public class Cart extends AppCompatActivity {
         cart = new Database(this).getCarts();
         adapter = new CartAdapter(cart,this);
         recyclerView.setAdapter(adapter);
-
         int total = 0;
         for (Order order:cart)
             total+=(Integer.parseInt(order.getPrice()))*(Integer.parseInt(order.getQuantity()));
