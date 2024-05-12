@@ -19,6 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,11 +39,11 @@ public class Admin extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_admin);
         categoriesDb = FirebaseDatabase.getInstance("https://reservation-restaurant-24668-default-rtdb.europe-west1.firebasedatabase.app");
-        foodname = (EditText) findViewById(R.id.editTextText5);
-        foodDesc = (EditText) findViewById(R.id.editTextText6);
-        imgUrl = (EditText) findViewById(R.id.editTextText7);
-        price = (EditText) findViewById(R.id.editTextText8);
-        categories = (Spinner) findViewById(R.id.spinner2);
+        foodname=(MaterialEditText)findViewById(R.id.editTextFoodName);
+        foodDesc = (MaterialEditText) findViewById(R.id.editTextDescription);
+        imgUrl = (MaterialEditText) findViewById(R.id.editTextImageUrl);
+        price = (MaterialEditText) findViewById(R.id.editTextPrice);
+        categories = (Spinner) findViewById(R.id.spinnerFoodCategory);
         DatabaseReference dbref = categoriesDb.getReference("Category");
         dbref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

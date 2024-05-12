@@ -48,8 +48,9 @@ public class SignIn extends AppCompatActivity {
                             user.setPhone(edtPhone.getText().toString());
                             if (user.getPassword().equals(edtPassword.getText().toString())) {
                                 String role = user.getRole();
-                                if(role.equals("Admin")){
-                                    Intent adminIntent = new Intent(SignIn.this,Admin.class);
+                                if(role != null && role.equals("Admin")){
+                                    Intent adminIntent = new Intent(SignIn.this,Home.class);
+                                    adminIntent.putExtra("userRole", role);
                                     Common.currentUser=user;
                                     startActivity(adminIntent);
                                 }else if (role.equals("Client")) {

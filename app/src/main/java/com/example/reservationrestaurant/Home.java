@@ -46,8 +46,16 @@ public class Home extends AppCompatActivity {
         database = FirebaseDatabase.getInstance("https://reservation-restaurant-24668-default-rtdb.europe-west1.firebasedatabase.app");
         category = database.getReference("Category");
 
+        String userRole = getIntent().getStringExtra("userRole");
+
         // Floating Action Button to open Cart activity
         FloatingActionButton fab = findViewById(R.id.fab);
+        FloatingActionButton fabadmin = findViewById(R.id.fabadmin);
+        if (userRole != null && userRole.equals("Admin")) {
+            fab.setVisibility(View.GONE);
+        } else {
+            fabadmin.setVisibility(View.GONE);
+        }
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,7 +63,13 @@ public class Home extends AppCompatActivity {
                 startActivity(cartIntent);
             }
         });
-
+        fabadmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent addFoodIntent = new Intent(Home.this, Admin.class);
+                startActivity(addFoodIntent);
+            }
+        });
         // Toolbar setup
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

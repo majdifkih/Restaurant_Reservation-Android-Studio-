@@ -24,12 +24,17 @@
         android:src="@drawable/logo_eat" />
 
     <TextView
-        android:gravity="center"
         android:id="@+id/txtSlogan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="@string/slogan"
+        android:textSize="20sp"
         android:textColor="@android:color/white"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"/>
+        android:textStyle="italic"
+        android:fontFamily="sans-serif-condensed"
+        android:padding="13dp" />
+
 </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
