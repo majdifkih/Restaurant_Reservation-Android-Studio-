@@ -38,7 +38,7 @@ public class OrdersList extends AppCompatActivity {
         setContentView(R.layout.activity_orders_list);
         db = FirebaseDatabase.getInstance("https://reservation-restaurant-24668-default-rtdb.europe-west1.firebasedatabase.app");
         reqRef = db.getReference("Requests");
-        name=(TextView) findViewById(R.id.textView);
+        name=(TextView) findViewById(R.id.textView1);
         adresse=(TextView) findViewById(R.id.textView2);
         phone=(TextView) findViewById(R.id.textView3);
         FoodList =(TextView) findViewById(R.id.textView5);

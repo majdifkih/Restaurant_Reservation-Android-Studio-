@@ -2,6 +2,7 @@ package com.example.reservationrestaurant;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -85,9 +87,26 @@ public class Home extends AppCompatActivity {
         // Set Name for user in Navigation Drawer
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @SuppressWarnings("StatementWithEmptyBody")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                // Handle navigation item clicks here
+                int id = item.getItemId();
+                if (id==R.id.nav_menu){
+
+                }else if (id == R.id.nav_cart){
+                    Intent cartIntent = new Intent(Home.this,Cart.class);
+                    startActivity(cartIntent);
+                }else if (id == R.id.orders){
+                    Intent ordersIntent = new Intent(Home.this,OrdersList.class);
+                    startActivity(ordersIntent);
+                }else if (id == R.id.nav_log_out){
+                    Intent signIntent = new Intent(Home.this,SignIn.class);
+                    signIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(signIntent);
+                }
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
+
                 return true;
             }
         });
@@ -153,4 +172,6 @@ public class Home extends AppCompatActivity {
             adapter.stopListening();
         }
     }
+
+
 }
